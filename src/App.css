@@ -1,41 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 :root {
-  --blue-1: #add7f6;
-  --blue-2: #87bfff;
-  --blue-3: #3f8efc;
-  --blue-4: #2667ff;
-  --blue-5: #3b28cc;
+  --navy: #132048;
 }
 
 .App {
-  text-align: center;
-  background-color: var(--blue-1);
+  min-height: 100vh;
+  background: linear-gradient(360deg, rgb(221, 221, 221) 5.5%, rgb(110, 136, 161) 90.2%);
 }
 
 .App-footer {
+  min-height: 10vh;
   font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--navy);
 }
 
 .App-header {
   min-height: 20vh;
-  background-color: #282c34;
-  color: white;
+  color: var(--navy);
 }
 
 .App-logo {
-  height: 20vmin;
+  height: 75px;
   pointer-events: none;
 }
 
 .App-title {
-  height: 20vmin;
   font-family: 'Bebas Neue', sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+  color: white;
+  text-shadow: 2px 2px 0px var(--navy);
 }
 
-.App-board {
+.Board {
+  min-height: 60vh;
+  width: 95%;
+  background-color:#AD875C;
+  background-image: url(/cork-1.jpg);
+  background-size: 50%;
+  border: 5px solid white;
+  border-radius: 10px;
+}
+
+.ListingCard {
   background: white;
-  min-height: 30vh;
-  width: 90%;
-  border: 5px solid black;
+}
+
+.ListingDetail {
+  background: white;
 }

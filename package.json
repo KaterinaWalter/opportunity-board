@@ -17,13 +17,13 @@
     "postcss": "^8.4.31"
   },
   "homepage": "https://KaterinaWalter.github.io/opportunity-board",
-"scripts": {
-  "start": "BROWSER=none WDS_SOCKET_PORT=0 vite --port 3000",
-  "build": "vite build",
-  "preview": "vite preview",
-  "test": "vitest",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist"
+  "scripts": {
+    "start": "BROWSER=none WDS_SOCKET_PORT=0 vite --port 3000",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "eslintConfig": {
     "extends": [

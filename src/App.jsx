@@ -5,7 +5,7 @@ import Board from './components/Board';
 
 function App() {
   return (
-    <div className="App d-flex flex-column min-vh-100">
+    <div className="App">
       <Header/>
       <Board/>
       <Footer/>
