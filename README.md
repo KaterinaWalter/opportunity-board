@@ -13,7 +13,7 @@ npm install --save-dev gh-pages
 ```
 2. In `package.json` add:
 ```
-"homepage": "https://KaterinaWalter.github.io/bwl-experiences",
+"homepage": "https://KaterinaWalter.github.io/repository-name",
 "scripts": {
   "start": "BROWSER=none WDS_SOCKET_PORT=0 vite --port 3000",
   "build": "vite build",
