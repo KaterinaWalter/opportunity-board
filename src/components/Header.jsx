@@ -4,7 +4,7 @@ export default function Header() {
             <nav class="navbar">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
-                    <img src="bwl_logo_lion.png" alt="Logo" className="App-logo d-inline-block align-text-center"/>
+                    <img src="bwl_lion_logo_square.png" alt="Logo" className="App-logo d-inline-block align-text-center"/>
                     <span className="App-title">BWL Opportunities Board</span>
                     </a>
                 </div>
