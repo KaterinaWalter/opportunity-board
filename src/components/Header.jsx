@@ -11,9 +11,8 @@ export default function Header() {
             </nav> 
             <p className="App-description">Welcome, Lions! Here is your database for finding enrichment opportunities, including: <strong>extracurricular activities</strong>, <strong>summer programs</strong>, <strong>internships</strong>, <strong>jobs</strong>, and more.</p>
             <div className="d-flex justify-content-around">
-                <button className="btn btn-secondary shadow-sm">Tips & Tricks</button>
-                <button className="btn btn-secondary shadow-sm">Resumé Help</button>
-                <button className="btn btn-secondary shadow-sm">Contact Us!</button>
+                <button className="btn btn-secondary shadow-sm fw-bold">Resumé Tips</button>
+                <button className="btn btn-secondary shadow-sm fw-bold">Contact Us!</button>
             </div>
         </header>
     );

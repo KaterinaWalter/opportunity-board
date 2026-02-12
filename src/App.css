@@ -40,13 +40,15 @@
 }
 
 .Board {
-  min-height: 60vh;
+  height: 60vh;
   width: 95%;
   background-color:#AD875C;
   background-image: url(/cork-1.jpg);
   background-size: 50%;
   border: 5px solid white;
   border-radius: 10px;
+  overflow-y: auto;
+  padding-top: 12px;
 }
 
 .ListingCard {
@@ -59,4 +61,47 @@
 
 button {
   font-size: 0.8rem !important;
+}
+
+/* Interest tag color classes */
+.tag-remote {
+  background-color: #6c757d !important;
+}
+
+.tag-academic {
+  background-color: #0d6efd !important;
+}
+
+.tag-arts {
+  background-color: #fd7e14 !important;
+}
+
+.tag-science {
+  background-color: #0dcaf0 !important;
+}
+
+.tag-healthcare {
+  background-color: #dc3545 !important;
+}
+
+.tag-environment {
+  background-color: #198754 !important;
+}
+
+.tag-law {
+  background-color: #6f42c1 !important;
+}
+
+.tag-business {
+  background-color: #fd6b8b !important;
+}
+
+.tag-leadership {
+  background-color: #20c997 !important;
+}
+
+.interest-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
