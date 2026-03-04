@@ -2,7 +2,7 @@
 
 :root {
   --bwl-navy: #132048;
-  --remote: #4b6669;
+  --grey: #4b6669;
   --academic: #9674d5;
   --arts: #db5375;
   --science: #4ecdc4;
@@ -11,6 +11,7 @@
   --law: #c08497;
   --business: #ff9770;
   --leadership: #00bbf9;
+  --architecture: #e9b779;
 }
 
 .App {
@@ -86,14 +87,39 @@ button {
   font-size: 0.8rem !important;
 }
 
-/* Interest tag color classes */
+/* Logistics tag color classes */
 .tag-remote {
-  background-color: var(--remote) !important;
+  background-color: var(--grey) !important;
 }
 .tag-remote::before {
   content: "💻 ";
 }
+.tag-residential {
+  background-color: var(--grey) !important;
+}
+.tag-residential::before {
+  content: "🏠 ";
+}
+.tag-competition {
+  background-color: var(--grey) !important;
+}
+.tag-competition::before {
+  content: "🏆 " ;
+}
+.tag-coursework {
+  background-color: var(--grey) !important;
+}
+.tag-coursework::before {
+  content: "📚 ";
+}
+.tag-internship {
+  background-color: var(--grey) !important;
+}
+.tag-internship::before {
+  content: "💼 ";
+}
 
+/* Interest tag color classes */
 .tag-academic {
   background-color: var(--academic) !important;
 }
@@ -115,17 +141,17 @@ button {
   content: "🧬 ";
 }
 
-.tag-healthcare {
+.tag-health {
   background-color: var(--healthcare) !important;
 }
-.tag-healthcare::before {
+.tag-health::before {
   content: "🩺 ";
 }
 
-.tag-environment {
+.tag-sustainability {
   background-color: var(--environment) !important;
 }
-.tag-environment::before {
+.tag-sustainability::before {
   content: "🌎 ";
 }
 
@@ -143,11 +169,25 @@ button {
   content: "💼 ";
 }
 
-.tag-leadership {
+.tag-service {
   background-color: var(--leadership) !important;
 }
-.tag-leadership::before {
+.tag-service::before {
   content: "🤝 ";
+}
+
+.tag-humanities {
+  background-color: var(--academic) !important;
+}
+.tag-humanities::before {
+  content: "📖 ";
+}
+
+.tag-architecture {
+  background-color: var(--architecture) !important;
+}
+.tag-architecture::before {
+  content: "🏛️ ";
 }
 
 .interest-tags {

@@ -1,6 +1,17 @@
 export default function ListingDetail({ listing, isOpen, onClose }) {
     if (!isOpen || !listing) return null;
 
+    const statusValue = listing.status || listing.type;
+    const normalizedStatus = (statusValue || '').toUpperCase();
+    const statusBadgeClass =
+        normalizedStatus === 'OPEN'
+            ? 'bg-success'
+            : normalizedStatus === 'ONGOING'
+                ? 'bg-warning text-dark'
+                : normalizedStatus === 'CLOSED'
+                    ? 'bg-danger'
+                    : 'bg-secondary';
+
     return (
         <>
             <div className="modal-backdrop fade show" onClick={onClose}></div>
@@ -14,7 +25,8 @@ export default function ListingDetail({ listing, isOpen, onClose }) {
                         <div className="modal-body">
                             <h6 className="text-muted mb-3">{listing.organization}</h6>
                             <div className="mb-3">
-                                <span className="badge bg-secondary">{listing.type}</span>
+                                <strong>Status:</strong>{' '}
+                                <span className={`badge ${statusBadgeClass}`}>{statusValue}</span>
                             </div>
                             {listing.interestTags && listing.interestTags.length > 0 && (
                                 <div className="mb-3">

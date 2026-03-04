@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import ListingCard from './ListingCard';
 import ListingDetail from './ListingDetail';
-import csvData from '../board-data-12feb26.csv?raw';
+import csvData from '../board-data-4mar26.csv?raw';
+
+const LOGISTICS_TAGS = [
+    'Competition / Award',
+    'Coursework / Enrichment',
+    'Internship / Job',
+    'Residential',
+    'Remote'
+];
 
 export default function Board() {
     const [listings, setListings] = useState([]);
@@ -11,6 +19,10 @@ export default function Board() {
     const [allTags, setAllTags] = useState([]);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+
+    const logisticsTagSet = new Set(LOGISTICS_TAGS);
+    const logisticsTags = LOGISTICS_TAGS.filter((tag) => allTags.includes(tag));
+    const interestTags = allTags.filter((tag) => !logisticsTagSet.has(tag));
 
     const handleCardClick = (listing) => {
         setSelectedListing(listing);
@@ -45,7 +57,7 @@ export default function Board() {
             const searchHaystack = [
                 listing.title,
                 listing.organization,
-                listing.type,
+                listing.status || listing.type,
                 ...(listing.interestTags || [])
             ]
                 .filter(Boolean)
@@ -97,23 +109,22 @@ export default function Board() {
                         organization: values[1],
                         summary: values[2],
                         website: values[3],
-                        deadline: values[4],
-                        type: values[5],
+                        status: values[4],
+                        deadline: values[5],
                         interestTags: interestTags
                     });
                 }
             }
-            return data;
+
+            const tagsInUse = new Set(data.flatMap((listing) => listing.interestTags));
+            const orderedTags = interestTagColumns.filter((tag) => tagsInUse.has(tag));
+
+            return { data, orderedTags };
         };
 
-        const parsedListings = parseCSV(csvData);
-        setListings(parsedListings);
-        
-        // Extract unique tags from all listings
-        const uniqueTags = Array.from(
-            new Set(parsedListings.flatMap((listing) => listing.interestTags))
-        ).sort();
-        setAllTags(uniqueTags);
+        const parsedResult = parseCSV(csvData);
+        setListings(parsedResult.data);
+        setAllTags(parsedResult.orderedTags);
     }, []);
 
     return (
@@ -149,25 +160,55 @@ export default function Board() {
                     </div>
                     {isFilterOpen && (
                         <>
-                            <div className="d-flex flex-wrap gap-2">
-                                {allTags.map((tag) => {
-                                    const tagClass = `tag-${tag.split(' ')[0].toLowerCase()}`;
-                                    return (
-                                        <span
-                                            key={tag}
-                                            className={`badge ${tagClass}`}
-                                            onClick={() => handleTagFilterClick(tag)}
-                                            style={{
-                                                cursor: 'pointer',
-                                                opacity: selectedFilterTags.includes(tag) ? 1 : 0.6,
-                                                border: selectedFilterTags.includes(tag) ? '2px solid' : '1px solid transparent'
-                                            }}
-                                        >
-                                            {tag}
-                                        </span>
-                                    );
-                                })}
-                            </div>
+                            {logisticsTags.length > 0 && (
+                                <div className="mb-3">
+                                    <div className="small text-uppercase text-muted mb-2">Logistics Tags:</div>
+                                    <div className="d-flex flex-wrap gap-2">
+                                        {logisticsTags.map((tag) => {
+                                            const tagClass = `tag-${tag.split(' ')[0].toLowerCase()}`;
+                                            return (
+                                                <span
+                                                    key={tag}
+                                                    className={`badge ${tagClass}`}
+                                                    onClick={() => handleTagFilterClick(tag)}
+                                                    style={{
+                                                        cursor: 'pointer',
+                                                        opacity: selectedFilterTags.includes(tag) ? 1 : 0.6,
+                                                        border: selectedFilterTags.includes(tag) ? '2px solid' : '1px solid transparent'
+                                                    }}
+                                                >
+                                                    {tag}
+                                                </span>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            )}
+
+                            {interestTags.length > 0 && (
+                                <div>
+                                    <div className="small text-uppercase text-muted mb-2">Interest Tags:</div>
+                                    <div className="d-flex flex-wrap gap-2">
+                                        {interestTags.map((tag) => {
+                                            const tagClass = `tag-${tag.split(' ')[0].toLowerCase()}`;
+                                            return (
+                                                <span
+                                                    key={tag}
+                                                    className={`badge ${tagClass}`}
+                                                    onClick={() => handleTagFilterClick(tag)}
+                                                    style={{
+                                                        cursor: 'pointer',
+                                                        opacity: selectedFilterTags.includes(tag) ? 1 : 0.6,
+                                                        border: selectedFilterTags.includes(tag) ? '2px solid' : '1px solid transparent'
+                                                    }}
+                                                >
+                                                    {tag}
+                                                </span>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            )}
                         </>
                     )}
                 </div>
@@ -180,7 +221,7 @@ export default function Board() {
                             <ListingCard 
                                 title={listing.title}
                                 organization={listing.organization}
-                                type={listing.type}
+                                status={listing.status}
                                 interestTags={listing.interestTags}
                                 onClick={() => handleCardClick(listing)}
                             />
