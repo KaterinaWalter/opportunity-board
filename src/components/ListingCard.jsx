@@ -19,11 +19,6 @@ export default function ListingCard({ title, organization, status, interestTags,
                     <span className="card-subtitle mb-2 text-muted">{organization}</span>
                 
                 </div>
-                {status && (
-                    <div className="mb-2">
-                        <span className={`badge ${statusBadgeClass}`}>{status}</span>
-                    </div>
-                )}
                 {interestTags && interestTags.length > 0 && (
                     <div className="interest-tags">
                         {interestTags.map((tag, index) => {

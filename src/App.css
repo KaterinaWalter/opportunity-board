@@ -166,7 +166,7 @@ button {
   background-color: var(--business) !important;
 }
 .tag-business::before {
-  content: "💼 ";
+  content: "💵 ";
 }
 
 .tag-service {
@@ -180,7 +180,7 @@ button {
   background-color: var(--academic) !important;
 }
 .tag-humanities::before {
-  content: "📖 ";
+  content: "📝 ";
 }
 
 .tag-architecture {

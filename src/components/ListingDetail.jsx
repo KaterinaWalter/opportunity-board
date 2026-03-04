@@ -25,9 +25,14 @@ export default function ListingDetail({ listing, isOpen, onClose }) {
                         <div className="modal-body">
                             <h6 className="text-muted mb-3">{listing.organization}</h6>
                             <div className="mb-3">
-                                <strong>Status:</strong>{' '}
+                                <strong>Current Status:</strong>{' '}
                                 <span className={`badge ${statusBadgeClass}`}>{statusValue}</span>
                             </div>
+                            {listing.deadline && (
+                                <div className="mb-3">
+                                    <strong>{listing.deadline}</strong>
+                                </div>
+                            )}
                             {listing.interestTags && listing.interestTags.length > 0 && (
                                 <div className="mb-3">
                                     <strong>Interest Tags:</strong>
@@ -49,11 +54,6 @@ export default function ListingDetail({ listing, isOpen, onClose }) {
                                     <a href={listing.website} target="_blank" rel="noopener noreferrer">
                                         {listing.website}
                                     </a>
-                                </div>
-                            )}
-                            {listing.deadline && (
-                                <div className="mb-3">
-                                    <strong>Deadline:</strong> {listing.deadline}
                                 </div>
                             )}
                             {listing.summary && (
