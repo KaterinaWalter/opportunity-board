@@ -74,8 +74,8 @@ export default function Board() {
             const headers = lines[0].split(',').map(normalizeValue);
             const data = [];
             
-            // Define interest tag columns (starting from index 6)
-            const interestTagColumns = headers.slice(6);
+            // Define interest tag columns (starting from index 5)
+            const interestTagColumns = headers.slice(5);
 
             for (let i = 1; i < lines.length; i++) {
                 if (!lines[i].trim()) continue;
