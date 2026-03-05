@@ -103,6 +103,10 @@
   font-size: 0.8rem !important;
 }
 
+.btn-link {
+  color: white !important;
+}
+
 a {
   font-weight: 600 !important;
   color:#157fc5 !important;

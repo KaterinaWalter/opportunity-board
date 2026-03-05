@@ -37,7 +37,7 @@ export default function ListingDetail({ listing, isOpen, onClose }) {
                         <div className="modal-body">
                             <div className="status-container mb-3 d-flex align-items-center justify-content-center gap-3">
                                 {listing.deadline && (
-                                    <h6 className="mt-2 d-inline-block">{listing.deadline}</h6>
+                                    <h6 className="mt-2 fw-bold d-inline-block">{listing.deadline}</h6>
                                 )}
                             </div>
                             {listing.website && (
