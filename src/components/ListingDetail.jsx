@@ -1,6 +1,18 @@
 export default function ListingDetail({ listing, isOpen, onClose }) {
     if (!isOpen || !listing) return null;
 
+    const normalizeTag = (tag) => tag.toLowerCase().replace(/\s*\/\s*/g, ' / ').trim();
+    const logisticsTagSet = new Set([
+        'competition / award',
+        'internship / job',
+        'coursework / enrichment',
+        'remote',
+        'residential',
+    ]);
+    const allTags = listing.interestTags || [];
+    const logisticsTags = allTags.filter((tag) => logisticsTagSet.has(normalizeTag(tag)));
+    const interestTags = allTags.filter((tag) => !logisticsTagSet.has(normalizeTag(tag)));
+
     const statusValue = listing.status || listing.type;
     const normalizedStatus = (statusValue || '').toUpperCase();
     const statusBadgeClass =
@@ -33,19 +45,38 @@ export default function ListingDetail({ listing, isOpen, onClose }) {
                                     <strong>{listing.deadline}</strong>
                                 </div>
                             )}
-                            {listing.interestTags && listing.interestTags.length > 0 && (
+                            {allTags.length > 0 && (
                                 <div className="mb-3">
-                                    <strong>Interest Tags:</strong>
-                                    <div className="interest-tags mt-2">
-                                        {listing.interestTags.map((tag, index) => {
-                                            const tagClass = `tag-${tag.split(' ')[0].toLowerCase()}`;
-                                            return (
-                                                <span key={index} className={`badge ${tagClass}`}>
-                                                    {tag}
-                                                </span>
-                                            );
-                                        })}
-                                    </div>
+                                    {logisticsTags.length > 0 && (
+                                        <>
+                                            <strong>Logistics Tags:</strong>
+                                            <div className="interest-tags mt-2 mb-3">
+                                                {logisticsTags.map((tag, index) => {
+                                                    const tagClass = `tag-${tag.split(' ')[0].toLowerCase()}`;
+                                                    return (
+                                                        <span key={`logistics-${index}`} className={`badge ${tagClass}`}>
+                                                            {tag}
+                                                        </span>
+                                                    );
+                                                })}
+                                            </div>
+                                        </>
+                                    )}
+                                    {interestTags.length > 0 && (
+                                        <>
+                                            <strong>Interest Tags:</strong>
+                                            <div className="interest-tags mt-2">
+                                                {interestTags.map((tag, index) => {
+                                                    const tagClass = `tag-${tag.split(' ')[0].toLowerCase()}`;
+                                                    return (
+                                                        <span key={`interest-${index}`} className={`badge ${tagClass}`}>
+                                                            {tag}
+                                                        </span>
+                                                    );
+                                                })}
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             )}
                             {listing.website && (
