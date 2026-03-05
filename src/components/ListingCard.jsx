@@ -1,14 +1,4 @@
 export default function ListingCard({ title, organization, status, interestTags, onClick }) {
-    const normalizedStatus = (status || '').toUpperCase();
-    const statusBadgeClass =
-        normalizedStatus === 'OPEN'
-            ? 'bg-success'
-            : normalizedStatus === 'ONGOING'
-                ? 'bg-warning text-dark'
-                : normalizedStatus === 'CLOSED'
-                    ? 'bg-danger'
-                    : 'bg-secondary';
-
     return (
         <div className="ListingCard card mb-3" onClick={onClick} style={{ cursor: 'pointer' }}>
             <div className="card-body">

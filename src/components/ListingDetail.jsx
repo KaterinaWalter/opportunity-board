@@ -35,21 +35,24 @@ export default function ListingDetail({ listing, isOpen, onClose }) {
                             <button type="button" className="btn-close" onClick={onClose}></button>
                         </div>
                         <div className="modal-body">
-                            <h6 className="text-muted mb-3">{listing.organization}</h6>
-                            <div className="mb-3">
-                                <strong>Current Status:</strong>{' '}
-                                <span className={`badge ${statusBadgeClass}`}>{statusValue}</span>
+                            <div className="status-container mb-3 d-flex align-items-center justify-content-center gap-3">
+                                {listing.deadline && (
+                                    <h6 className="mt-2 d-inline-block fw-bold">{listing.deadline}</h6>
+                                )}
                             </div>
-                            {listing.deadline && (
+                            {listing.website && (
                                 <div className="mb-3">
-                                    <strong>{listing.deadline}</strong>
+                                    <strong className="text-uppercase">Website Link:</strong>{' '}
+                                    <a href={listing.website} target="_blank" rel="noopener noreferrer">
+                                        {listing.website}
+                                    </a>
                                 </div>
                             )}
                             {allTags.length > 0 && (
                                 <div className="mb-3">
                                     {logisticsTags.length > 0 && (
                                         <>
-                                            <strong>Logistics Tags:</strong>
+                                            <strong className="text-uppercase">Logistics Tags:</strong>
                                             <div className="interest-tags mt-2 mb-3">
                                                 {logisticsTags.map((tag, index) => {
                                                     const tagClass = `tag-${tag.split(' ')[0].toLowerCase()}`;
@@ -64,7 +67,7 @@ export default function ListingDetail({ listing, isOpen, onClose }) {
                                     )}
                                     {interestTags.length > 0 && (
                                         <>
-                                            <strong>Interest Tags:</strong>
+                                            <strong className="text-uppercase">Interest Tags:</strong>
                                             <div className="interest-tags mt-2">
                                                 {interestTags.map((tag, index) => {
                                                     const tagClass = `tag-${tag.split(' ')[0].toLowerCase()}`;
@@ -79,26 +82,14 @@ export default function ListingDetail({ listing, isOpen, onClose }) {
                                     )}
                                 </div>
                             )}
-                            {listing.website && (
-                                <div className="mb-3">
-                                    <strong>Website:</strong>{' '}
-                                    <a href={listing.website} target="_blank" rel="noopener noreferrer">
-                                        {listing.website}
-                                    </a>
-                                </div>
-                            )}
                             {listing.summary && (
                                 <div className="mb-3">
-                                    <strong>Summary:</strong>
+                                    <strong className="text-uppercase">Summary:</strong>
                                     <p className="mt-2">{listing.summary}</p>
                                 </div>
                             )}
                         </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" onClick={onClose}>
-                                Close
-                            </button>
-                        </div>
+
                     </div>
                 </div>
             </div>
