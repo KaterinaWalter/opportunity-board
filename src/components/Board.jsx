@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ListingCard from './ListingCard';
 import ListingDetail from './ListingDetail';
-import csvData from '../board-data-4mar26.csv?raw';
+import csvData from '../board-data-5mar26.csv?raw';
 
 const LOGISTICS_TAGS = [
     'Competition / Award',
@@ -56,7 +56,6 @@ export default function Board() {
             }
             const searchHaystack = [
                 listing.title,
-                listing.organization,
                 listing.status || listing.type,
                 ...(listing.interestTags || [])
             ]
@@ -101,16 +100,15 @@ export default function Board() {
                 if (values.length >= 3) {
                     // Extract interest tags where value is TRUE
                     const interestTags = interestTagColumns
-                        .map((tag, index) => values[6 + index] === 'TRUE' ? tag : null)
+                        .map((tag, index) => values[5 + index] === 'TRUE' ? tag : null)
                         .filter(tag => tag !== null);
                     
                     data.push({
                         title: values[0],
-                        organization: values[1],
-                        summary: values[2],
-                        website: values[3],
-                        status: values[4],
-                        deadline: values[5],
+                        summary: values[1],
+                        website: values[2],
+                        status: values[3],
+                        deadline: values[4],
                         interestTags: interestTags
                     });
                 }
