@@ -1,9 +1,10 @@
 export default function ListingCard({ title, status, interestTags, onClick }) {
-    const normalizeTag = (tag) => tag.toLowerCase().replace(/\s*\/\s*/g, ' / ').trim();
+    const normalizeTag = (tag) => tag.toLowerCase().replace(/\s*\/\s*/g, '/').trim();
+    const formatTagLabel = (tag) => tag.replace(/\s*\/\s*/g, '/').trim();
     const logisticsTagSet = new Set([
-        'competition / award',
-        'internship / job',
-        'coursework / enrichment',
+        'competition/award',
+        'internship/job',
+        'coursework/enrichment',
         'volunteering',
         'remote',
         'residential'
@@ -22,10 +23,10 @@ export default function ListingCard({ title, status, interestTags, onClick }) {
                         {logisticsTags.length > 0 && (
                             <div className="interest-tag-row mb-0">
                                 {logisticsTags.map((tag, index) => {
-                                    const tagClass = `tag-${tag.split(' ')[0].toLowerCase()}`;
+                                    const tagClass = `tag-${tag.trim().toLowerCase().split(/[ /]/)[0]}`;
                                     return (
                                         <span key={`logistics-${index}`} className={`badge ${tagClass}`}>
-                                            {tag}
+                                            {formatTagLabel(tag)}
                                         </span>
                                     );
                                 })}
@@ -34,10 +35,10 @@ export default function ListingCard({ title, status, interestTags, onClick }) {
                         {nonLogisticsTags.length > 0 && (
                             <div className="interest-tag-row">
                                 {nonLogisticsTags.map((tag, index) => {
-                                    const tagClass = `tag-${tag.split(' ')[0].toLowerCase()}`;
+                                    const tagClass = `tag-${tag.trim().toLowerCase().split(/[ /]/)[0]}`;
                                     return (
                                         <span key={`interest-${index}`} className={`badge ${tagClass}`}>
-                                            {tag}
+                                            {formatTagLabel(tag)}
                                         </span>
                                     );
                                 })}

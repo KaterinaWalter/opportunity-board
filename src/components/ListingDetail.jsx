@@ -1,11 +1,12 @@
 export default function ListingDetail({ listing, isOpen, onClose }) {
     if (!isOpen || !listing) return null;
 
-    const normalizeTag = (tag) => tag.toLowerCase().replace(/\s*\/\s*/g, ' / ').trim();
+    const normalizeTag = (tag) => tag.toLowerCase().replace(/\s*\/\s*/g, '/').trim();
+    const formatTagLabel = (tag) => tag.replace(/\s*\/\s*/g, '/').trim();
     const logisticsTagSet = new Set([
-        'competition / award',
-        'internship / job',
-        'coursework / enrichment',
+        'competition/award',
+        'internship/job',
+        'coursework/enrichment',
         'volunteering',
         'remote',
         'residential'
@@ -60,10 +61,10 @@ export default function ListingDetail({ listing, isOpen, onClose }) {
                                             <strong className="text-uppercase">Logistics Tags:</strong>
                                             <div className="interest-tags mt-2 mb-3">
                                                 {logisticsTags.map((tag, index) => {
-                                                    const tagClass = `tag-${tag.split(' ')[0].toLowerCase()}`;
+                                            const tagClass = `tag-${tag.trim().toLowerCase().split(/[ /]/)[0]}`;
                                                     return (
                                                         <span key={`logistics-${index}`} className={`badge ${tagClass}`}>
-                                                            {tag}
+                                                            {formatTagLabel(tag)}
                                                         </span>
                                                     );
                                                 })}
@@ -75,10 +76,10 @@ export default function ListingDetail({ listing, isOpen, onClose }) {
                                             <strong className="text-uppercase">Interest Tags:</strong>
                                             <div className="interest-tags mt-2">
                                                 {interestTags.map((tag, index) => {
-                                                    const tagClass = `tag-${tag.split(' ')[0].toLowerCase()}`;
+                                                    const tagClass = `tag-${tag.trim().toLowerCase().split(/[ /]/)[0]}`;
                                                     return (
                                                         <span key={`interest-${index}`} className={`badge ${tagClass}`}>
-                                                            {tag}
+                                                            {formatTagLabel(tag)}
                                                         </span>
                                                     );
                                                 })}

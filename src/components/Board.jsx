@@ -4,9 +4,9 @@ import ListingDetail from './ListingDetail';
 import csvData from '../board-data-6mar26.csv?raw';
 
 const LOGISTICS_TAGS = [
-    'Competition / Award',
-    'Internship / Job',
-    'Coursework / Enrichment',
+    'Competition/Award',
+    'Internship/Job',
+    'Coursework/Enrichment',
     'Volunteering',
     'Remote',
     'Residential'
@@ -22,6 +22,7 @@ export default function Board() {
     const [searchQuery, setSearchQuery] = useState('');
 
     const logisticsTagSet = new Set(LOGISTICS_TAGS);
+    const formatTagLabel = (tag) => tag.replace(/\s*\/\s*/g, '/').trim();
     const logisticsTags = LOGISTICS_TAGS.filter((tag) => allTags.includes(tag));
     const interestTags = allTags.filter((tag) => !logisticsTagSet.has(tag));
 
@@ -166,7 +167,7 @@ export default function Board() {
                                     <div className="small text-uppercase text-muted mb-2">Logistics Tags:</div>
                                     <div className="d-flex flex-wrap gap-2">
                                         {logisticsTags.map((tag) => {
-                                            const tagClass = `tag-${tag.split(' ')[0].toLowerCase()}`;
+                                            const tagClass = `tag-${tag.trim().toLowerCase().split(/[ /]/)[0]}`;
                                             return (
                                                 <span
                                                     key={tag}
@@ -178,7 +179,7 @@ export default function Board() {
                                                         border: selectedFilterTags.includes(tag) ? '2px solid' : '1px solid transparent'
                                                     }}
                                                 >
-                                                    {tag}
+                                                    {formatTagLabel(tag)}
                                                 </span>
                                             );
                                         })}
@@ -191,7 +192,7 @@ export default function Board() {
                                     <div className="small text-uppercase text-muted mb-2">Interest Tags:</div>
                                     <div className="d-flex flex-wrap gap-2">
                                         {interestTags.map((tag) => {
-                                            const tagClass = `tag-${tag.split(' ')[0].toLowerCase()}`;
+                                            const tagClass = `tag-${tag.trim().toLowerCase().split(/[ /]/)[0]}`;
                                             return (
                                                 <span
                                                     key={tag}
@@ -203,7 +204,7 @@ export default function Board() {
                                                         border: selectedFilterTags.includes(tag) ? '2px solid' : '1px solid transparent'
                                                     }}
                                                 >
-                                                    {tag}
+                                                    {formatTagLabel(tag)}
                                                 </span>
                                             );
                                         })}
