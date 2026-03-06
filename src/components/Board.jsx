@@ -132,6 +132,7 @@ export default function Board() {
                 <div className="filter-tags mb-0 container mt-3 px-3">
                     <div className="d-flex align-items-center justify-content-start mb-2 gap-2">
                         <input
+                            id="search"
                             className="form-control form-control-sm w-auto"
                             type="search"
                             placeholder="🔍 Search listings"
@@ -141,6 +142,7 @@ export default function Board() {
                         />
                         <div className="d-flex align-items-center">
                             <button
+                                id="toggle"
                                 className="btn btn-sm btn-outline-light"
                                 onClick={() => setIsFilterOpen((prev) => !prev)}
                             >
@@ -218,7 +220,6 @@ export default function Board() {
                         <div key={index} className="col-md-6 col-lg-4">
                             <ListingCard 
                                 title={listing.title}
-                                organization={listing.organization}
                                 status={listing.status}
                                 interestTags={listing.interestTags}
                                 onClick={() => handleCardClick(listing)}

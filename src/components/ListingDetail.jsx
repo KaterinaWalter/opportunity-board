@@ -18,11 +18,9 @@ export default function ListingDetail({ listing, isOpen, onClose }) {
     const statusBadgeClass =
         normalizedStatus === 'OPEN'
             ? 'bg-success'
-            : normalizedStatus === 'ONGOING'
-                ? 'bg-warning text-dark'
-                : normalizedStatus === 'CLOSED'
-                    ? 'bg-danger'
-                    : 'bg-secondary';
+            : normalizedStatus === 'CLOSED'
+                ? 'bg-danger'
+                : 'bg-secondary';
 
     return (
         <>
@@ -43,7 +41,12 @@ export default function ListingDetail({ listing, isOpen, onClose }) {
                             {listing.website && (
                                 <div className="mb-3">
                                     <strong className="text-uppercase">Website Link:</strong>{' '}
-                                    <a href={listing.website} target="_blank" rel="noopener noreferrer">
+                                    <a
+                                        className="listing-website-link"
+                                        href={listing.website}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
                                         {listing.website}
                                     </a>
                                 </div>
