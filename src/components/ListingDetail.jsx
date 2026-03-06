@@ -36,18 +36,19 @@ export default function ListingDetail({ listing, isOpen, onClose }) {
                             <button type="button" className="btn-close" onClick={onClose}></button>
                         </div>
                         <div className="modal-body">
+                            {listing.deadline && (
                             <div className="status-container mb-3 d-flex align-items-center justify-content-center gap-3">
-                                {listing.deadline && (
+                                <span className={`badge ${statusBadgeClass} px-3 py-2`}>{normalizedStatus}</span>
                                     <h6 className="mt-2 fw-bold d-inline-block">
                                         {normalizedStatus === 'OPEN' ? (
-                                            <span className="status-open">Application Deadline:</span>
+                                            <span className="status-open">Deadline</span>
                                         ) : (
-                                            <span className="status-closed">Upcoming:</span>
-                                        )}{' '}
-                                        {listing.deadline}
+                                            <span className="status-closed">Upcoming</span>
+                                        )}
+                                        : {listing.deadline}
                                     </h6>
-                                )}
                             </div>
+                            )}
                             {listing.website && (
                                 <div className="mb-3">
                                     <strong className="text-uppercase">Website Link:</strong>{' '}

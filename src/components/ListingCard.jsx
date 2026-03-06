@@ -13,10 +13,14 @@ export default function ListingCard({ title, status, interestTags, onClick }) {
     const allTags = interestTags || [];
     const logisticsTags = allTags.filter((tag) => logisticsTagSet.has(normalizeTag(tag)));
     const nonLogisticsTags = allTags.filter((tag) => !logisticsTagSet.has(normalizeTag(tag)));
+    const normalizedStatus = (status || '').toUpperCase();
+    const statusClass = normalizedStatus === 'OPEN' ? 'status-open' : 'status-closed';
+    const statusLabel = normalizedStatus || 'UNKNOWN';
 
     return (
         <div className="ListingCard card mb-3" onClick={onClick} style={{ cursor: 'pointer' }}>
             <div className="card-body">
+                <span className={`badge listing-status-badge ${statusClass}`}>{statusLabel}</span>
                 <h5 className="card-title">{title}</h5>
                 {allTags.length > 0 && (
                     <div className="interest-tags card-interest-tags">
