@@ -6,14 +6,16 @@ export default function ListingDetail({ listing, isOpen, onClose }) {
         'competition / award',
         'internship / job',
         'coursework / enrichment',
+        'volunteering',
         'remote',
-        'residential',
+        'residential'
     ]);
+
     const allTags = listing.interestTags || [];
     const logisticsTags = allTags.filter((tag) => logisticsTagSet.has(normalizeTag(tag)));
     const interestTags = allTags.filter((tag) => !logisticsTagSet.has(normalizeTag(tag)));
 
-    const statusValue = listing.status || listing.type;
+    const statusValue = listing.status;
     const normalizedStatus = (statusValue || '').toUpperCase();
     const statusBadgeClass =
         normalizedStatus === 'OPEN'

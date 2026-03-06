@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import ListingCard from './ListingCard';
 import ListingDetail from './ListingDetail';
-import csvData from '../board-data-5mar26.csv?raw';
+import csvData from '../board-data-6mar26.csv?raw';
 
 const LOGISTICS_TAGS = [
     'Competition / Award',
-    'Coursework / Enrichment',
     'Internship / Job',
-    'Residential',
-    'Remote'
+    'Coursework / Enrichment',
+    'Volunteering',
+    'Remote',
+    'Residential'
 ];
 
 export default function Board() {

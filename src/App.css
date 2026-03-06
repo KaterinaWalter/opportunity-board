@@ -3,15 +3,16 @@
 :root {
   --bwl-navy: #132048;
   --bwl-grey: #4b6669;
-  --academic: #9674d5;
-  --arts: #db5375;
   --science: #4ecdc4;
-  --healthcare: #f15bb5;
-  --environment: #43aa8b;
-  --law: #c08497;
-  --business: #ff9770;
-  --leadership: #00bbf9;
-  --architecture: #e9b779;
+  --medicine: #f15bb5;
+  --sports: #3e7cd2;
+  --sustainability: #43aa8b;
+  --service: #00bbf9;
+  --business: #c08497;
+  --law: #e9b779;
+  --arts: #ce72de;
+  --writing: #9674d5;
+  --architecture: #ff9770;
 }
 
 a {
@@ -131,6 +132,23 @@ button {
   color: white !important;
 }
 
+.interest-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.card-interest-tags {
+  width: 100%;
+}
+
+.card-interest-tags .interest-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+}
+
 /* Logistics tag color classes */
 .tag-remote {
   background-color: var(--bwl-grey) !important;
@@ -162,91 +180,71 @@ button {
 .tag-internship::before {
   content: "💼 ";
 }
+.tag-volunteering {
+  background-color: var(--bwl-grey) !important;
+}
+.tag-volunteering::before {
+  content: "💜 ";
+}
 
 /* Interest tag color classes */
-.tag-academic {
-  background-color: var(--academic) !important;
-}
-.tag-academic::before {
-  content: "🎓 ";
-}
-
-.tag-arts {
-  background-color: var(--arts) !important;
-}
-.tag-arts::before {
-  content: "🎨 ";
-}
-
 .tag-science {
   background-color: var(--science) !important;
 }
 .tag-science::before {
   content: "🧬 ";
 }
-
-.tag-health {
-  background-color: var(--healthcare) !important;
+.tag-medicine {
+  background-color: var(--medicine) !important;
 }
-.tag-health::before {
+.tag-medicine::before {
   content: "🩺 ";
 }
-
+.tag-sports {
+  background-color: var(--sports) !important;
+}
+.tag-sports::before {
+  content: "⚽ ";
+}
 .tag-sustainability {
-  background-color: var(--environment) !important;
+  background-color: var(--sustainability) !important;
 }
 .tag-sustainability::before {
   content: "🌎 ";
 }
-
+.tag-service {
+  background-color: var(--service) !important;
+}
+.tag-service::before {
+  content: "🤝 ";
+}
+.tag-business {
+  background-color: var(--business) !important;
+}
+.tag-business::before {
+  content: "📈 ";
+}
 .tag-law {
   background-color: var(--law) !important;
 }
 .tag-law::before {
   content: "⚖️ ";
 }
-
-.tag-business {
-  background-color: var(--business) !important;
+.tag-arts { 
+  background-color: var(--arts) !important;
 }
-.tag-business::before {
-  content: "💵 ";
+.tag-arts::before {
+  content: "🎨 ";
 }
-
-.tag-service {
-  background-color: var(--leadership) !important;
+.tag-writing {
+  background-color: var(--writing) !important;
 }
-.tag-service::before {
-  content: "🤝 ";
-}
-
-.tag-humanities {
-  background-color: var(--academic) !important;
-}
-.tag-humanities::before {
+.tag-writing::before {
   content: "📝 ";
 }
-
 .tag-architecture {
   background-color: var(--architecture) !important;
 }
 .tag-architecture::before {
   content: "🏛️ ";
-}
-
-.interest-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.card-interest-tags {
-  width: 100%;
-}
-
-.card-interest-tags .interest-tag-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  width: 100%;
 }

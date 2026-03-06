@@ -4,8 +4,9 @@ export default function ListingCard({ title, status, interestTags, onClick }) {
         'competition / award',
         'internship / job',
         'coursework / enrichment',
+        'volunteering',
         'remote',
-        'residential',
+        'residential'
     ]);
 
     const allTags = interestTags || [];
