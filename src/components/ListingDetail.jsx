@@ -38,14 +38,18 @@ export default function ListingDetail({ listing, isOpen, onClose }) {
                         <div className="modal-body">
                             {listing.deadline && (
                             <div className="status-container mb-3 d-flex align-items-center justify-content-center gap-3">
-                                <span className={`badge ${statusBadgeClass} px-3 py-2`}>{normalizedStatus}</span>
                                     <h6 className="mt-2 fw-bold d-inline-block">
                                         {normalizedStatus === 'OPEN' ? (
-                                            <span className="status-open">Deadline</span>
+                                            <span className="text-uppercase">Currently Open</span>
                                         ) : (
-                                            <span className="status-closed">Upcoming</span>
+                                            <span className="text-uppercase">Currently Closed</span>
                                         )}
                                         : {listing.deadline}
+                                        {normalizedStatus === 'OPEN' ? (
+                                            <span> Deadline</span>
+                                        ) : (
+                                            <span></span>
+                                        )}
                                     </h6>
                             </div>
                             )}

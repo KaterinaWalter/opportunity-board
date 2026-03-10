@@ -3,6 +3,7 @@
 :root {
   --bwl-navy: #132048;
   --bwl-grey: #4b6669;
+  --bwl-green: #11ec77;
   --science: #4ecdc4;
   --medicine: #f15bb5;
   --sports: #3e7cd2;
@@ -103,24 +104,6 @@ button {
   position: relative;
 }
 
-.listing-status-badge {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-}
-
-.listing-status-badge.status-open {
-  background-color: #198754;
-  color: white;
-}
-
-.listing-status-badge.status-closed {
-  background-color: #dc3545;
-  color: white;
-}
-
 .ListingCard .card-title {
   padding-right: 5.5rem;
 }
@@ -144,6 +127,25 @@ button {
 
 .status-open, .status-closed {
   font-style: italic;
+  color: var(--bwl-grey) !important;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+.status-open {
+  text-shadow: 0px 0px 4px var(--bwl-green);
+  animation: glow 1.5s infinite linear alternate;
+}
+@keyframes glow {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
 }
 
 .text-uppercase {
