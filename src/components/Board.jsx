@@ -12,6 +12,8 @@ const LOGISTICS_TAGS = [
     'Residential'
 ];
 
+const normalizeTag = (tag = '') => tag.replace(/\s*\/\s*/g, '/').trim();
+
 export default function Board() {
     const [listings, setListings] = useState([]);
     const [selectedListing, setSelectedListing] = useState(null);
@@ -21,10 +23,10 @@ export default function Board() {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
 
-    const logisticsTagSet = new Set(LOGISTICS_TAGS);
-    const formatTagLabel = (tag) => tag.replace(/\s*\/\s*/g, '/').trim();
-    const logisticsTags = LOGISTICS_TAGS.filter((tag) => allTags.includes(tag));
-    const interestTags = allTags.filter((tag) => !logisticsTagSet.has(tag));
+    const logisticsTagSet = new Set(LOGISTICS_TAGS.map(normalizeTag));
+    const formatTagLabel = (tag) => normalizeTag(tag);
+    const logisticsTags = allTags.filter((tag) => logisticsTagSet.has(normalizeTag(tag)));
+    const interestTags = allTags.filter((tag) => !logisticsTagSet.has(normalizeTag(tag)));
 
     const handleCardClick = (listing) => {
         setSelectedListing(listing);
@@ -77,7 +79,7 @@ export default function Board() {
             const data = [];
             
             // Define interest tag columns (starting from index 5)
-            const interestTagColumns = headers.slice(5);
+            const interestTagColumns = headers.slice(5).map(normalizeTag);
 
             for (let i = 1; i < lines.length; i++) {
                 if (!lines[i].trim()) continue;
