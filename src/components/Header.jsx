@@ -5,7 +5,7 @@ export default function Header() {
                 <div className="container-fluid text-center m-auto">
                     <img src="bwl_lion_logo_square.png" alt="Logo" className="App-logo"/>
                     <h1 className="App-title">BWL Opportunity Board</h1>
-                    <p className="App-description"><span className="fw-bold">Welcome, Lions!</span> Here is your database for enrichment opportunities including <strong>extracurricular activities</strong>, <strong>summer programs</strong>, <strong>internships</strong>, <strong>jobs</strong>, and more. 
+                    <p className="App-description"><span className="fw-bold">Welcome, Lions!</span> Here is your curated database for external opportunities including <strong>extracurricular activities</strong>, <strong>summer programs</strong>, <strong>internships</strong>, <strong>jobs</strong>, and more. 
                     <span className="App-instruction"> Click on a listing to view details ⬇️</span></p>
 
                 </div>
