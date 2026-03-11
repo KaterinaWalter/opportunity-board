@@ -45,11 +45,6 @@ export default function ListingDetail({ listing, isOpen, onClose }) {
                                             <span className="text-uppercase">Currently Closed</span>
                                         )}
                                         : {listing.deadline}
-                                        {normalizedStatus === 'OPEN' ? (
-                                            <span> Deadline</span>
-                                        ) : (
-                                            <span></span>
-                                        )}
                                     </h6>
                             </div>
                             )}
