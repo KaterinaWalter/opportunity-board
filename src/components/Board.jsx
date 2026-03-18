@@ -46,9 +46,71 @@ export default function Board() {
         );
     };
 
+    const getListingGroup = (listing) => {
+        const status = (listing.status || '').trim().toLowerCase();
+        const deadline = (listing.deadline || '').trim().toLowerCase();
+        const isRolling = deadline.includes('rolling');
+
+        if (status === 'open' && !isRolling) {
+            return 1;
+        }
+        if (status === 'open' && isRolling) {
+            return 2;
+        }
+        if (status === 'closed') {
+            return 3;
+        }
+        return 4;
+    };
+
+    const parseDeadlineDate = (deadlineValue = '') => {
+        const cleaned = deadlineValue
+            .replace(/deadline/gi, '')
+            .replace(/[:\-]/g, ' ')
+            .trim();
+
+        const parsedTimestamp = Date.parse(cleaned);
+        if (!Number.isNaN(parsedTimestamp)) {
+            return parsedTimestamp;
+        }
+
+        const dayFirstMatch = cleaned.match(/(\d{1,2})\/(\d{1,2})\/(\d{2,4})/);
+        if (dayFirstMatch) {
+            const [, day, month, year] = dayFirstMatch;
+            const fullYear = year.length === 2 ? `20${year}` : year;
+            const fallbackTimestamp = Date.parse(`${fullYear}-${month}-${day}`);
+            return Number.isNaN(fallbackTimestamp) ? Number.MAX_SAFE_INTEGER : fallbackTimestamp;
+        }
+
+        return Number.MAX_SAFE_INTEGER;
+    };
+
+    const compareAlphabetically = (a, b) =>
+        (a.title || '').localeCompare(b.title || '', undefined, { sensitivity: 'base' });
+
+    const sortListings = (items) =>
+        [...items].sort((a, b) => {
+            const groupA = getListingGroup(a);
+            const groupB = getListingGroup(b);
+
+            if (groupA !== groupB) {
+                return groupA - groupB;
+            }
+
+            if (groupA === 1) {
+                const dateA = parseDeadlineDate(a.deadline);
+                const dateB = parseDeadlineDate(b.deadline);
+                if (dateA !== dateB) {
+                    return dateA - dateB;
+                }
+            }
+
+            return compareAlphabetically(a, b);
+        });
+
     const getFilteredListings = () => {
         const normalizedQuery = searchQuery.trim().toLowerCase();
-        return listings.filter((listing) => {
+        const filteredListings = listings.filter((listing) => {
             const matchesTags =
                 selectedFilterTags.length === 0 ||
                 listing.interestTags.some((tag) => selectedFilterTags.includes(tag));
@@ -68,6 +130,8 @@ export default function Board() {
                 .toLowerCase();
             return searchHaystack.includes(normalizedQuery);
         });
+
+        return sortListings(filteredListings);
     };
 
     useEffect(() => {
